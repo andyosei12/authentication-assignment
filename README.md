@@ -8,8 +8,9 @@
 
 ## Api Endpoints
 
-1. /inventory gives access to the inventory resource using the various HTTP methods
-2. POST /users creates a new user.
+1. POST /users creates a new user. An apiKey will be assigned after creating a user
+2. You are required to provide an api_key header when calling the /inventory endpoint.
+3. /inventory gives access to the inventory resource using the various HTTP methods
 
 ## User creation
 
