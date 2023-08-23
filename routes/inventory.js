@@ -6,14 +6,15 @@ const {
   updateItem,
   deleteItem,
 } = require('../controllers/inventory');
+const { checkIsNormalUser, checkIsAdmin } = require('../middlewares/user');
 
 const router = express.Router();
 
-router.get('/', getAllItems);
-router.post('/', createItem);
-router.get('/:id', getItem);
-router.patch('/:id', updateItem);
-router.delete('/:id', deleteItem);
+router.get('/', checkIsNormalUser, getAllItems);
+router.post('/', checkIsAdmin, createItem);
+router.get('/:id', checkIsNormalUser, getItem);
+router.patch('/:id', checkIsAdmin, updateItem);
+router.delete('/:id', checkIsAdmin, deleteItem);
 
 router.get('*', (req, res) => {
   res.status(404).json({
