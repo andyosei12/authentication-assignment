@@ -8,20 +8,31 @@ const getDB = async () => {
   return JSON.parse(db);
 };
 
-const saveDB = async (db) => {
-  await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
-  return db;
+const getTable = async (table) => {
+  const db = await getDB();
+  return db[table];
 };
 
-const insertDB = async (inventory) => {
+const saveDB = async (data, tableName) => {
   const db = await getDB();
-  db.inventoryList.push(inventory);
-  await saveDB(db);
-  return inventory;
+  const newDb = {
+    ...db,
+    [tableName]: data,
+  };
+  await fs.writeFile(DB_PATH, JSON.stringify(newDb, null, 2));
+  return newDb;
+};
+
+const insertDB = async (data, tableName) => {
+  const table = await getTable(tableName);
+  table.push(data);
+  await saveDB(table, tableName);
+  return data;
 };
 
 module.exports = {
   getDB,
   saveDB,
   insertDB,
+  getTable,
 };

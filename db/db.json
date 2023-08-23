@@ -1,4 +1,26 @@
 {
-  "inventoryList": [],
-  "users": []
+  "inventoryList": [
+    {
+      "name": "t-shirt",
+      "size": "l",
+      "price": "19.99",
+      "id": "277"
+    }
+  ],
+  "users": [
+    {
+      "username": "drew",
+      "password": "economy",
+      "id": "441",
+      "apiKey": "drew_economy",
+      "role": "admin"
+    },
+    {
+      "username": "owusu",
+      "password": "economy",
+      "id": "391",
+      "apiKey": "owusu_economy",
+      "role": "user"
+    }
+  ]
 }

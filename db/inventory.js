@@ -1,4 +1,4 @@
-const { getDB, insertDB, saveDB } = require('./db.js');
+const { getDB, insertDB, saveDB, getTable } = require('./db.js');
 
 const newInventory = async (inventory) => {
   // Creating new inventory object
@@ -8,12 +8,12 @@ const newInventory = async (inventory) => {
   };
 
   //   inserting inventory created into db
-  await insertDB(inventoryList);
+  await insertDB(inventoryList, 'inventoryList');
   return inventoryList;
 };
 
 const getAllInventory = async () => {
-  const { inventoryList } = await getDB();
+  const inventoryList = await getTable('inventoryList');
   return inventoryList;
 };
 
@@ -42,7 +42,7 @@ const updateInventory = async (id, updatedBody) => {
   };
 
   inventoryList.splice(inventoryIndex, 1, update); // updating the old inventory with the update
-  await saveDB({ inventoryList }); // saving the db
+  await saveDB(inventoryList, 'inventoryList'); // saving the db
   return update;
 };
 
@@ -55,8 +55,8 @@ const removeInventory = async (id) => {
   const updatedInventory = inventoryList.filter(
     (inventory) => inventory.id !== id
   );
-  const db = await saveDB({ inventoryList: updatedInventory });
-  return db;
+  await saveDB(updatedInventory, 'inventoryList');
+  return updatedInventory;
 };
 
 module.exports = {
