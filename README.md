@@ -1,4 +1,4 @@
-# Node.js third assignment
+# Node.js authentication and authorization
 
 **Kindly run npm install to install the project dependencies**
 
@@ -13,5 +13,5 @@
 
 ## User creation
 
-The roles a user can have is either an admin or a user `['admin','user']`
+The roles a user can have is either an admin or a user `['admin','user']`  
 Currently a random number between 0 and 1 is used for assigning either an admin or user when adding a new user.
